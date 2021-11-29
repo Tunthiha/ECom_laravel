@@ -3,10 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Database\Seeder;
-
-
-
+use Illuminate\Support\Facades\Hash;
 
 class TestTableSeeder extends Seeder
 {
@@ -22,13 +21,20 @@ class TestTableSeeder extends Seeder
         // foreach($prdoucts as $product){
         //     Product::create([
         //         'name'=>$product,
-        //         'description'=>'Noting',
+        //         'description'=>'Nothing',
         //         'price'=>'1200',
         //         'total_quantity'=>'55',
         //         'category_id'=> rand(1,5),
         //         'user_id'=>1
         //     ]);
         // }
+
+        User::create([
+            'name'=>'admin',
+            'email'=>'admin@a.com',
+            'password' => Hash::make('password'),
+            'role' => "admin"
+        ]);
 
 
     }

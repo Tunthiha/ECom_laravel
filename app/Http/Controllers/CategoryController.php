@@ -93,6 +93,7 @@ class CategoryController extends Controller
 
         //     'name' => $request->name
         // ]);
+
         $this->validateWith([
             'name' => "required",
         ]);

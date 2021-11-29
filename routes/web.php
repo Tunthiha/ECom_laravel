@@ -26,6 +26,7 @@ Route::group([ 'middleware' => "Admin"], function () {
     Route::resource('admin/product', 'ProductController');
     Route::get('/admin/order','Admin\OrderController@adminshoworder')->name('adminshoworder');
     Route::get('/admin/approve','Admin\OrderController@approve')->name('approve');
+    Route::resource('admin/coupon', 'CuponController');
     // Route::get('/admin/order-list','Admin\OrderController@orderlist')->name('adminorderlist');
 });
 

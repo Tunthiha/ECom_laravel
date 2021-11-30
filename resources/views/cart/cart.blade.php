@@ -4,31 +4,9 @@
 @section('content')
 
 <style>
-    .loading {
-	z-index: 20;
-	position: absolute;
-	top: 0;
-	left:-5px;
-	width: 100%;
-	height: 100%;
-    background-color: rgba(0,0,0,0.4);
-}
-.loading-content {
-	position: absolute;
-	border: 16px solid #f3f3f3; /* Light grey */
-	border-top: 16px solid #3498db; /* Blue */
-	border-radius: 50%;
-	width: 50px;
-	height: 50px;
-	top: 40%;
-	left:35%;
-	animation: spin 2s linear infinite;
-	}
-
-	@keyframes spin {
-		0% { transform: rotate(0deg); }
-		100% { transform: rotate(360deg); }
-	}
+    .btn_1{
+        cursor: pointer;
+    }
 
 </style>
 <section class="cart_area section_padding">
@@ -100,12 +78,32 @@
                   <h5>{{$total_qty}}</h5>
                 </td>
               </tr>
+              <form action="{{route('applycoupon')}}" method="post">
+                  @csrf
+                  <tr class="bottom_button">
+                    <td>
+                      <input type="text" name="coupon" class="form-control" placeholder="Apply Coupon Here">
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                      <div class="cupon_text float-right">
+                        <input type="submit"  class="btn_1" value="Apply Coupon">
+                      </div>
+                    </td>
+                  </tr>
+              </form>
 
             </tbody>
           </table>
           <div class="checkout_btn_inner float-right">
             <a class="btn_1" href="{{route('welcome')}}">Continue Shopping</a>
-            <a class="btn_1 checkout_btn_1" href="{{route('makeorder')}}">Proceed to Order</a>
+            <form action="{{route('makeorder')}}" method="POST" class="d-inline">
+            @csrf
+            <input type="hidden" name="percentage" value="{{ $percentage }}">
+            <input type="submit" class="btn_1 checkout_btn_1" value="Proceed to Order">
+            </form>
+
           </div>
         </div>
       </div>

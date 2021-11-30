@@ -13,6 +13,7 @@ class OrderController extends Controller
 {
     public function makeorder(Request $request)
     {
+        //dd($request->percentage);
         //stock check
         $cart= Addtocart::where('user_id',Auth::user()->id)->with('product')->get();
         foreach($cart as $s){
@@ -28,13 +29,22 @@ class OrderController extends Controller
         }
         $Itemsincart= Addtocart::where('user_id',Auth::user()->id)->with('product')->get();
         foreach($Itemsincart as $c){
-
+            $totalprice=0;
+            $discount = 0;
+            if($request->percentage != 0)
+            {
+                $discount = $c->quantity * $c->product->price / $request->percentage;
+                $totalprice=$c->quantity * $c->product->price - $discount;
+            }
+            else{
+                $totalprice=$c->quantity * $c->product->price;
+            }
 
             Order::create([
                 'user_id' => auth()->id(),
                 'product_id' => $c->product_id,
                 'quantity' => $c->quantity,
-                'total_price' => $c->quantity * $c->product->price
+                'total_price' => $totalprice
             ]);
             //stock delete
             $product =Product::where('id',$c->product_id)->first();

@@ -38,7 +38,7 @@ class CuponController extends Controller
     {
         try {
             $request->validate([
-                'name' => "required",
+                'name' => ['required','unique:cupons'],
                 'discount'=>"required",
                 'exp_date'=>"required"
             ]);
@@ -93,11 +93,11 @@ class CuponController extends Controller
     public function update(Request $request, Cupon $coupon)
     {
         $request->validate([
-            'name' => "required",
+
             'discount'=>"required",
             'exp_date'=>"required"
         ]);
-        $coupon->name=$request->name;
+
         $coupon->discount=$request->discount;
         $coupon->Expire_date=$request->exp_date;
         $coupon->save();

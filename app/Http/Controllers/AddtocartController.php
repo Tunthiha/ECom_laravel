@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Addtocart;
+use App\Models\Cupon;
 use App\Models\Image;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -44,6 +45,7 @@ class AddtocartController extends Controller
     }
     public function cart()
     {
+        $percentage=0;
         $user_id=Auth::user()->id;
         $cart = Addtocart::where('user_id',$user_id)->with('product')->get();
         $images = Image::all();
@@ -57,7 +59,7 @@ class AddtocartController extends Controller
         foreach ($cart as $c) {
             $total_qty += $c->quantity * $c->product->price;
         }
-        return view('cart.cart', compact('cart','images','total_qty'));
+        return view('cart.cart', compact('cart','images','total_qty','percentage'));
     }
     public function update_cart(){
         $stock_id = request()->pid;
@@ -81,5 +83,39 @@ class AddtocartController extends Controller
     {
         Addtocart::where('id', $id)->delete();
         return redirect()->back()->with('success', 'Deleted Success.');
+    }
+    public function apply_coupon(Request $request)
+    {
+
+        $coupon = Cupon::where('name',$request->coupon)->first();
+
+        // dd($coupon->Expire_date);
+        if(!$coupon)
+        {
+            return redirect()->back()->with('danger','invalid coupon code');
+        }
+        if(date("Y-m-d") >= $coupon->Expire_date)
+        {
+            return redirect()->back()->with('danger','Coupon Code has been expired');
+        }
+        $user_id=Auth::user()->id;
+        $cart = Addtocart::where('user_id',$user_id)->with('product')->get();
+        //images fetch
+        foreach($cart as $c){
+            $imagesincart = Image::Where('product_id',$c->product->id)->first();
+
+            $c['img'] = $imagesincart['img_url'];
+        }
+
+        $total_qty=0;
+        foreach ($cart as $c) {
+            $total_qty += $c->quantity * $c->product->price;
+        }
+        $percentage= 100 / $coupon->discount ;
+        $discount = $total_qty / $percentage;
+
+        $total_qty = $total_qty - $discount;
+
+        return view('cart.cart', compact('cart','total_qty','percentage'));
     }
 }

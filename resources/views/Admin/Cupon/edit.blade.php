@@ -15,7 +15,7 @@
     @method('PUT')
     <div class="form-group">
         <label for="">Enter Category</label>
-        <input type="text" value="{{$coupon->name}}" name="name" class="form-control" id="">
+        <input type="text" value="{{$coupon->name}}" name="name" class="form-control" id="" readonly>
     </div>
     <div class="form-group">
         <label for="">Discount</label>

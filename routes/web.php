@@ -52,9 +52,10 @@ Route::group([ 'middleware' => "auth"], function () {
     Route::get('/cart','AddtocartController@cart')->name('cart');
     Route::post('/update-cart','AddtocartController@update_cart')->name('update-cart');
 
-    Route::get('/makeorder','OrderController@makeorder')->name('makeorder');
+    Route::post('/makeorder','OrderController@makeorder')->name('makeorder');
     Route::get('/order','OrderController@showorder')->name('showorder');
     Route::delete('/deletecart/{id}','AddtocartController@delete_cart')->name('delete-cart');
+    Route::post('/applycoupon','AddtocartController@apply_coupon')->name('applycoupon');
 });
 
 

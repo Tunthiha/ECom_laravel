@@ -150,7 +150,7 @@
                                 </div>
                                 <div class="footer-tittle">
                                     <div class="footer-pera">
-                                        <p>Asorem ipsum adipolor sdit amet, consectetur adipisicing elitcf sed do eiusmod tem.</p>
+                                        <p>This ecommerce site is created solely by Tun Thiha</p>
                                 </div>
                                 </div>
                             </div>
@@ -182,10 +182,13 @@
                             <div class="footer-tittle">
                                 <h4>New Products</h4>
                                 <ul>
-                                    <li><a href="#">Woman Cloth</a></li>
-                                    <li><a href="#">Fashion Accessories</a></li>
-                                    <li><a href="#"> Man Accessories</a></li>
-                                    <li><a href="#"> Rubber made Toys</a></li>
+                                    @foreach ($productlist as $p)
+                                    <li>
+                                        <a href="{{route('productdetail',$p->id)}}">{{$p->name}}</a>
+                                    </li>
+                                    @endforeach
+
+
                                 </ul>
                             </div>
                         </div>
@@ -198,7 +201,7 @@
                                     <li><a href="#">Frequently Asked Questions</a></li>
                                     <li><a href="#">Terms & Conditions</a></li>
                                     <li><a href="#">Privacy Policy</a></li>
-                                    <li><a href="#">Report a Payment Issue</a></li>
+                                    <li><a href="#">Report a issue</a></li>
                                 </ul>
                             </div>
                         </div>

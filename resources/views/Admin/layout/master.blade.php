@@ -83,11 +83,24 @@
               </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="{{route('adminshoworder')}}">
+                  <i class="ni ni-delivery-fast text-red"></i>
+                  <span class="nav-link-text">Order List</span>
+                </a>
+              </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('coupon.index')}}">
+                  <i class="ni ni-credit-card text-green"></i>
+                  <span class="nav-link-text">Coupon</span>
+                </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="{{route('welcome')}}">
                 <i class="ni ni-shop text-pink"></i>
                 <span class="nav-link-text">Shop</span>
               </a>
             </li>
+
 
           </ul>
           <!-- Divider -->

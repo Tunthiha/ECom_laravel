@@ -42,7 +42,6 @@ class CategoryController extends Controller
                 'name' => "required",
             ]);
             Category::create([
-
                 'name' => $request->name
             ]);
             return redirect()->back()->with('success', 'Category Created Success');

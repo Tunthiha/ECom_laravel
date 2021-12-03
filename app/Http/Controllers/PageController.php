@@ -74,6 +74,7 @@ class PageController extends Controller
     public function detaill($id)
     {
          $product = Product::where('id',$id)->with('image','category','size','color')->first();
+
         return view('product.productdetail',compact('product'));
     }
     // public function hello()

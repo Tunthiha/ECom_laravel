@@ -131,7 +131,9 @@
         <div class="alert alert-danger">{{$e}}</div>
         @endforeach
         @endif
-        @yield('content')
+        <div id="app">
+            @yield('content')
+        </div>
 
 
        </div>
@@ -244,6 +246,7 @@
     <!-- Search model end -->
 
 <!-- JS here -->
+    <script src='{{mix('js/app.js')}}'></script>
     <!-- All JS Custom Plugins Link Here here -->
     <script src="{{asset('/assets/landing/js/vendor/modernizr-3.5.0.min.js')}}"></script>
     <!-- Jquery, Popper, Bootstrap -->

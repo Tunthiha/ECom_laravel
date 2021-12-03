@@ -1,19 +1,21 @@
 @extends('layout.master')
+<style>
+    .inumber-decrement,.number-increment,.btn_3{
+        cursor: pointer;
+    }
+    .card_area .product_count .product_count_item{
+        height: auto !important;
+    }
+ button:disabled,
+ button[disabled]{
+   border: 0px  #999999;
+   background-color: #cccccc;
+   color: #666666;
+ }
+
+ </style>
 
 @section('content')
-<style>
-   .inumber-decrement,.number-increment,.btn_3{
-       cursor: pointer;
-   }
-
-button:disabled,
-button[disabled]{
-  border: 1px solid #999999;
-  background-color: #cccccc;
-  color: #666666;
-}
-
-</style>
 
 <div class="product_image_area">
     <div class="container">
@@ -69,14 +71,15 @@ button[disabled]{
                         <button type="button" class="genric-btn primary circle large"><a href="{{route('welcome')}}">Back</a></button>
                         @endif
 
-
                     </div>
                 </div>
 
             </form>
 
+
         </div>
     </div>
-    </div>
 </div>
+</div>
+<comment @auth :user="{{ Auth::user() }}" @endauth :product='@json($product->id)' ></comment>
 @endsection

@@ -56,9 +56,11 @@ Route::group([ 'middleware' => "auth"], function () {
     Route::get('/order','OrderController@showorder')->name('showorder');
     Route::delete('/deletecart/{id}','AddtocartController@delete_cart')->name('delete-cart');
     Route::post('/applycoupon','AddtocartController@apply_coupon')->name('applycoupon');
+    Route::post('/comment/store','CommentController@store')->name('comment-store');
+
 });
 
-
+Route::get('/comments','CommentController@index')->name('comment.index');
 
 
 

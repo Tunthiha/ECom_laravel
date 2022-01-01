@@ -59,7 +59,7 @@ class AddtocartController extends Controller
         foreach ($cart as $c) {
             $total_qty += $c->quantity * $c->product->price;
         }
-        return view('cart.cart', compact('cart','images','total_qty','percentage'));
+        return view('cart.cart', compact('cart','images','  ','percentage'));
     }
     public function update_cart(){
         $stock_id = request()->pid;

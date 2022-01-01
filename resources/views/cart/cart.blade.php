@@ -3,12 +3,6 @@
 
 @section('content')
 
-<style>
-    .btn_1{
-        cursor: pointer;
-    }
-
-</style>
 <section class="cart_area section_padding">
     <div class="container">
       <div class="cart_inner">
@@ -78,24 +72,26 @@
                   <h5>{{$total_qty}}</h5>
                 </td>
               </tr>
-              <form action="{{route('applycoupon')}}" method="post">
-                  @csrf
-                  <tr class="bottom_button">
-                    <td>
-                      <input type="text" name="coupon" class="form-control" placeholder="Apply Coupon Here">
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                      <div class="cupon_text float-right">
-                        <input type="submit"  class="btn_1" value="Apply Coupon">
-                      </div>
-                    </td>
-                  </tr>
-              </form>
+
 
             </tbody>
           </table>
+
+          <form action="{{route('applycoupon')}}" method="post">
+            @csrf
+            <tr class="">
+              <td>
+                <input type="text" name="coupon" class="form-control" placeholder="Apply Coupon Here">
+              </td>
+              <td></td>
+              <td></td>
+              <td>
+
+                  <button type="submit"> apply</button>
+
+              </td>
+            </tr>
+        </form>
           <div class="checkout_btn_inner float-right">
             <a class="btn_1" href="{{route('welcome')}}">Continue Shopping</a>
             <form action="{{route('makeorder')}}" method="POST" class="d-inline">
@@ -133,7 +129,6 @@
                 alert("Max stock Number for " + response.data.name + " is : " + response.data.quantity)
                 }
                 else{
-
                 location.reload();
                 }
                 }).catch(function (error) {

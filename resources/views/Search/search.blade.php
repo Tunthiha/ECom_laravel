@@ -1,6 +1,7 @@
 @extends('layout.master')
 
 @section('content')
+@section('style')
 <style>
     .popular-items .nice-select{
         height: auto;
@@ -14,6 +15,7 @@
     }
 
 </style>
+@endsection
 <div class="container">
     <section class="popular-items latest-padding">
         <div class="container">
